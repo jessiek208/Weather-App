@@ -7,8 +7,9 @@ let d = new Date();
 let newDate = (d.getMonth()+1)+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 //Access Weather API with Fetch
-let baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-let apiKey = ',us&appid=2af1d51a7c755c0ad75becae4e91561f';
+const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
+const apiKey = ',us&appid=2af1d51a7c755c0ad75becae4e91561f';
+const units = '&units=imperial';
 
 
 document.getElementById('generate').addEventListener('click', performAction);
@@ -31,7 +32,7 @@ function performAction(e){
 
 //function takes zipcode and fetches data from the API using created link
 const getTemp = async (baseURL, zipcode, apiKey) => {
-    const res = await fetch (baseURL+zipcode+apiKey);
+    const res = await fetch (baseURL+zipcode+units+apiKey);
     try {
         const data = await res.json();
         return data;
