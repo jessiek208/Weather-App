@@ -21,9 +21,8 @@ function performAction(e){
     getTemp(baseURL, zipcode, apiKey)
     .then(function(data){
         console.log(data);
-        const tempKelvin = data.main.temp;
-        const farenheitTemp = Math.round((1.8 * (tempKelvin - 273)) + 32); //converts to F
-        postEntry('/add', {date: newDate, temp: farenheitTemp, content: userContent});
+        const temperature = data.main.temp;
+        postEntry('/add', {date: newDate, temp: temperature, content: userContent});
         updateUI();
     });
 };
