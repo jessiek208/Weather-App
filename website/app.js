@@ -22,7 +22,7 @@ function performAction(e){
     .then(function(data){
         console.log(data);
         const tempKelvin = data.main.temp;
-        const farenheitTemp = Math.round((1.8 * (tempKelvin - 273)) + 32);
+        const farenheitTemp = Math.round((1.8 * (tempKelvin - 273)) + 32); //converts to F
         postEntry('/add', {date: newDate, temp: farenheitTemp, content: userContent});
         updateUI();
     });
@@ -34,7 +34,6 @@ const getTemp = async (baseURL, zipcode, apiKey) => {
     const res = await fetch (baseURL+zipcode+apiKey);
     try {
         const data = await res.json();
-        //console.log(data);
         return data;
     }   catch(error) {
         console.log("error", error);
@@ -60,7 +59,7 @@ const postEntry = async ( url = '', data = {})=>{
     }
 };
 
-//updates UI by pulling data and inserting it into divs
+//updates UI by pulling data with element IDs and inserting it into divs
 const updateUI = async () => {
     const request = await fetch ('/all');
     try {
