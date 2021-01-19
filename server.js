@@ -27,12 +27,15 @@ function listening(){
     console.log(`Server listening. Running on ${port}`);
 }
 
+//sends projectData object upon get request
 app.get('/all', function (req, res) {
     res.send(projectData);
   });
 
+//posts data as explained in addData function below
 app.post('/add', addData);
 
+//opted to pull only required data 
 function addData(req, res){
     projectData.date = req.body.date;
     projectData.temp = req.body.temp;
